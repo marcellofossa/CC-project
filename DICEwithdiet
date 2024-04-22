@@ -31,6 +31,9 @@ PARAMETERS
         a0       Initial level of total factor productivity       /5.115    /
         ga0      Initial growth rate for TFP per 5 years          /0.076   /
         dela     Decline rate of TFP per 5 years                  /0.005   /
+** Emissions from diet
+        veg0     Initial number of vegans(%)                      /0.15    /
+        emiveg   Emissions pro_capite by a vegan
 ** Emissions parameters
         gsigma1  Initial growth of sigma (per year)                   /-0.0152 /
         dsig     Decline rate of decarbonization (per period)         /-0.001  /
@@ -122,6 +125,9 @@ VARIABLES
         TATM(t)         Increase temperature of atmosphere (degrees C from 1900)
         E(t)            Total CO2 emissions (GtCO2 per year)
         EIND(t)         Industrial emissions (GtCO2 per year)
+        EDIET(t)        Emissions from diet (GtCO2 per year)(delta)
+        NVEG(t)         Number of vegans on earth at time t (%)
+        COSTVEG(t)      Cost related to become vegan effort (trillions 2005 US dollars per capita)
         C(t)            Consumption (trillions 2005 US dollars per year)
         K(t)            Capital stock (trillions 2005 US dollars)
         CPC(t)          Per capita consumption (thousands 2005 USD per year)
@@ -148,6 +154,7 @@ EQUATIONS
 *Emissions and Damages
         EEQ(t)           Emissions equation
         EINDEQ(t)        Industrial emissions
+        EDIETEQ(t)       Diet emissions
         CCACCA(t)        Cumulative industrial carbon emissions
         CCATOTEQ(t)      Cumulative total carbon emissions
         DAMFRACEQ(t)     Equation for damage fraction
@@ -168,6 +175,7 @@ EQUATIONS
         SEQ(t)           Savings rate equation
         KK(t)            Capital balance equation
         RIEQ(t)          Interest rate equation
+        COSTVEGEQ(t)     Cost related to become vegan
 
 * Utility
         CEMUTOTPEREQ(t)  Period utility
@@ -178,6 +186,7 @@ EQUATIONS
 *Emissions and Damages
  eeq(t)..             E(t)           =E= EIND(t) + etree(t);
  eindeq(t)..          EIND(t)        =E= sigma(t) * YGROSS(t) * (1-(MIU(t)));
+ edieteq(t)..         EDIET(t)       =E= L(t)*(nveg0-NVEG(t))*emiveg; 
  ccacca(t+1)..        CCA(t+1)       =E= CCA(t)+ EIND(t)*5/3.666;
  ccatoteq(t)..        CCATOT(t)      =E= CCA(t)+cumetree(t);
  damfraceq(t) ..      DAMFRAC(t)     =E= (a1*TATM(t))+(a2*TATM(t)**a3);
@@ -198,6 +207,7 @@ EQUATIONS
  seq(t)..             I(t)           =E= S(t) * Y(t);
  kk(t+1)..            K(t+1)         =L= (1-dk)**tstep * K(t) + tstep * I(t);
  rieq(t+1)..          RI(t)          =E= (1+prstp) * (CPC(t+1)/CPC(t))**(elasmu/tstep) - 1;
+ costvegeq(t)         COSTVEG        =E= ;
 
 *Utility
  cemutotpereq(t)..    CEMUTOTPER(t)  =E= PERIODU(t) * L(t) * rr(t);
