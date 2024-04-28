@@ -1,1 +1,2 @@
-modules -> core emissisons -> added EDIET and other variables
+modules -> core emissions -> added EDIET, cumilative emissions of diet and other variables. Initialization of the variables. Added equations like eq_ediet, eq_ccediet. 
+modules -> core emissions -> Added in parameters: veg0, emibmk, emiveg. Added in variables: NVEG.
