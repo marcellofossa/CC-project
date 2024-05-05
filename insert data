@@ -1,0 +1,53 @@
+$batinclude regions/storcapeor9.inc
+$batinclude regions/storshare12.inc
+$batinclude regions/stordistance18.inc
+
+set meta_param(*,*,*);
+
+* Recalibration September 2016: fitting exponential power curves with choosen power to Hendricks et al 2004 curves
+table veg0(*,witch13)
+                cajaz china easia oldeuro india neweuro kosau laca mena sasia ssa te usa 
+veg_percentage          6                  29,5                               10      
+;
+
+meta_param('veg_percentage','nagg','mean') = yes;
+meta_param('veg_percentage','nweight','gdp') = yes;
+
+table emiveg(*,witch13)
+                     cajaz china easia oldeuro india neweuro kosau laca mena sasia ssa te usa 
+veg_emi_per_capite    275   384                 275                                                275
+bmk_emi_per_capite    537   974                 537                                                537
+;
+
+meta_param('emiveg','nagg','mean') = yes;
+meta_param('emiveg','nweight','gdp') = yes;
+
+table curve_param(*,witch13)
+   cajaz china easia oldeuro india neweuro kosau laca mena sasia ssa te  usa 
+l
+j          5                  5,5                 5                       6            
+r 
+;
+
+meta_param('curve_param','nagg','sum') = yes;
+meta_param('curve_param','nweight','gdp') = yes;
+
+
+execute_unload 'build/data_mod_ccs.gdx', 
+ccs_capture_eff
+ccs_cost
+ccs_emi_capt
+ccs_floor_cost
+ccs_learn0
+ccs_quantity
+ccs_spill_factor
+ccs_stor_cap_aqui
+ccs_stor_cap_ecbm
+ccs_stor_cap_eor
+ccs_stor_cap_og
+ccs_stor_cost_estim
+ccs_stor_dist
+ccs_stor_share_onoff
+ccs_wcum0
+meta_param
+;
