@@ -121,8 +121,19 @@ $gdxin
 * Configuration settings determine imported scenario
 emi_bau_co2(t,n) = ssp_emi_bau('%baseline%',t,n)  ;
 
-
-
+veg0('cajaz') = 0.06;
+veg0('china') = 0.06;
+veg0('easia') = 0.05;
+veg0('kosau') = 0.043;
+veg0('laca') = 0.1;
+veg0('india') = 0.295;
+veg0('mena') = 0.05;
+veg0('neweuro') = 0.035;
+veg0('oldeuro') = 0.048;
+veg0('sasia') = 0.07;
+veg0('ssa') = 0.07;
+veg0('te') = 0.02;
+veg0('usa') = 0.042;
 
 
 
