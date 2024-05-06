@@ -135,6 +135,33 @@ veg0('ssa') = 0.07;
 veg0('te') = 0.02;
 veg0('usa') = 0.042;
 
+emibmk('cajaz') = 537;
+emibmk('china') = 914;
+emibmk('easia') = 914;
+emibmk('kosau') = 974;
+emibmk('laca') = 914;
+emibmk('india') = 1121
+emibmk('mena') = 914;
+emibmk('neweuro') = 974;
+emibmk('oldeuro') = 537;
+emibmk('sasia') = 1121;
+emibmk('ssa') = 1121;
+emibmk('te') = 914;
+emibmk('usa') = 537;
+
+emiveg('cajaz') = 275;
+emiveg('china') = 384;
+emiveg('easia') = 384;
+emiveg('kosau') = 384;
+emiveg('laca') = 384;
+emiveg('india') = 519;
+emiveg('mena') = 384;
+emiveg('neweuro') = 384;
+emiveg('oldeuro') = 275;
+emiveg('sasia') = 519;
+emiveg('ssa') = 519;
+emiveg('te') = 384;
+emiveg('usa') = 275;
 
 
 ##  COMPUTE DATA
