@@ -172,6 +172,20 @@ emiveg('te') = 384;
 emiveg('usa') = 275;
 
 
+l_curve('cajaz') =0.5;
+l_curve('china') = 3.3;
+l_curve('easia') = 3.302;
+l_curve('kosau') = 1.103;
+l_curve('laca') = 3.296;
+l_curve('india') = 3.609;
+l_curve('mena') = 3.302;
+l_curve('neweuro') = 1.105;
+l_curve('oldeuro') = 0.502;
+l_curve('sasia') = 3.698;
+l_curve('ssa') = 3.702;
+l_curve('te') = 3.307;
+l_curve('usa') = 0.503;
+
 
 ##  COMPUTE DATA
 #_________________________________________________________________________
