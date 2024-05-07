@@ -83,6 +83,12 @@ PARAMETERS
    cumetree0  'Starting value of cumulative emissions from land use deforestation [GtC]'   / 100   /
 * Availability of fossil fuels
    fosslim    'Maximum cumulative extraction fossil fuels (GtC)' / 6000 /
+
+* Curve parameters
+   k_curve         /0.6/
+   j_curve         /6.2/
+   r_curve         /0.5/
+
 * MIU rate controls
    miu0       'Initial emissions control rate for base calib_emissions'    / 0 / 
    min_miu     'upper bound for control rate MIU at t_min_miu'       / 1.00 / # best compromise
