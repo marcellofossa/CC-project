@@ -329,7 +329,7 @@ $elseif.ph %phase%=='eqs'
  eq_ygross(t,n)$(reg(n))..   YGROSS(t,n)  =E=  tfp(t,n) * (K(t,n)**gama) * (pop(t,n)/1000)**(1-gama)   ;
 
 * GDP net of Climate Damages
- eq_ynet(t,n)$(reg(n))..  YNET(t,n)  =E=  YGROSS(t,n) - DAMAGES(t,n)  ;
+ eq_ynet(t,n)$(reg(n))..  YNET(t,n)  =E=  YGROSS(t,n) - DAMAGES(t,n) - CDIET(t,n) ;
 
 * GDP net of both Damages and Abatecosts
  eq_yy(t,n)$(reg(n))..   Y(t,n)  =E=  YNET(t,n)
