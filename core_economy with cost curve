@@ -247,14 +247,15 @@ POSITIVE VARIABLES  Y, YNET, YGROSS, C, Cpc, K, I, S;
 
 # VARIABLES STARTING LEVELS
 * to help convergence
- YGROSS.l(t,n) = ykali(t,n)  ;
-   YNET.l(t,n) = ykali(t,n)  ;
+      YGROSS.l(t,n) = ykali(t,n)  ;
+      YNET.l(t,n) = ykali(t,n)  ;
       Y.l(t,n) = ykali(t,n)  ;
       S.l(t,n) = fixed_savings(t,n)  ;
       I.l(t,n) = S.l(t,n) * ykali(t,n)  ;
       C.l(t,n) = ykali(t,n) - I.l(t,n)  ;
-    CPC.l(t,n) = 1000 * C.l(t,n) / pop(t,n)  ;
+      CPC.l(t,n) = 1000 * C.l(t,n) / pop(t,n)  ;
       K.l(t,n) = k_tfp(t,n) ;
+      CDIET.l(tfirst,n) = (l_curve(n)+(r_curve/(1+exp(-k_curve*(veg0(n)*10-j_curve)))))*365*L(tfirst,n);
 
 
 ##  COMPUTE VARIABLES
