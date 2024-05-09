@@ -88,6 +88,7 @@ PARAMETERS
    k_curve         /0.6/
    j_curve         /6.2/
    r_curve         /0.5/
+   l_curve
 
 * MIU rate controls
    miu0       'Initial emissions control rate for base calib_emissions'    / 0 / 
@@ -214,7 +215,6 @@ VARIABLES
     EDIET(t,n)      'Diet emisssions      [GtCO2/year]'
 
     NVEG(t,n)       '% of vegetarians in a country at a given t'
-    CDIET(t,n)      'diet cost [$/(day*person)]'
 
     CCAEIND(t)      'Cumulative Industrial Carbon Emissions [GTC]'
     CCAEDIET(t)     'Cumulative Diet Carbon Emissions [GTC]'
@@ -222,21 +222,28 @@ VARIABLES
     CUMETREE(t)     'Cumulative from land [GtC]'
 
     CCO2EIND(t)     'Cumulative Industrial CO2 Emissions [GtCO2]'
-    CCO2DIET(t)     'Cumulative Diet CO2 Emissions [GtCO2]'
+    CCO2EDIET(t)     'Cumulative Diet CO2 Emissions [GtCO2]'
     CCO2ETOT(t)     'Cumulative CO2 Emissions [GtCO2]'
 
     MIU(t,n)        'Emission control rate GHGs'
     ABATEDEMI(t,n)  'Abated Emissions [GtCO2/year]'
 ;
-POSITIVE VARIABLES  ABATEDEMI, MIU, NVEG ;
+POSITIVE VARIABLES  ABATEDEMI, MIU, NVEG, EDIET ;
 
 # VARIABLES STARTING LEVELS 
 * to help convergence if no startboost is loaded
+
      EIND.l(t,n) = sigma(t,n)*ykali(t,n) ;
-     EDIET.l(t,n) = 0;
-        E.l(t,n) = EIND.l(t,n) + EDIET.l(t,n) + eland_bau('uniform',t,n) ;
-      MIU.l(t,n) = 0 ; 
-ABATEDEMI.l(t,n) = 0 ;
+     NVEG.l(tfirst,n) = veg0(n);
+     EDIET.l(tfirst,n) = pop(tfirst,n)*(veg0(n)*emiveg(n)+(1-veg0(n))*emibmk(n));
+     E.l(t,n) = EIND.l(t,n) + EDIET.l(t,n) + eland_bau('uniform',t,n) ;
+     MIU.l(t,n) = 0 ; 
+     ABATEDEMI.l(t,n) = 0 ;
+
+* upper and lower bounds NVEG 
+
+     NVEG.lo(t,n) = 0;
+     NVEG.up(t,n) = 1;
 
 ## EMISSIONS OGHG ----------
 $ifthen.oghg %climate% == 'witchoghg'
@@ -271,7 +278,7 @@ CUMETREE.fx(tfirst) = cumetree0   ;
 CCAETOT.FX(tfirst)  = cumeind0 + cumetree0 ;
 * CO2-budget starts empty
 CCO2EIND.FX(tfirst) = 0 ;
-CCO2DIET.FX(tfirst) = 0 ;
+CCO2EDIET.FX(tfirst) = 0 ;
 CCO2ETOT.FX(tfirst) = 0 ;
 
 ##  OGHG EMISSION VARIABLES ----------
@@ -375,7 +382,7 @@ $elseif.ph %phase%=='eqs'
                                       +   (( sum(n$reg(n), EIND(t,n))    + sum(n$(not reg(n)), EIND.l(t,n)) )  * tstep )  ; #CO2
 
 * Diet cumulated emissions in Carbon  
- eq_cco2diet(t+1)..  CCAEDIET(t+1) =E=  CCAEDIET(t) # All diet emi per period     
+ eq_cco2diet(t+1)..  CCO2EDIET(t+1) =E=  CCO2EDIET(t) # All diet emi per period     
                                    +  (( sum(n$reg(n), EDIET(t,n)) + sum(n$(not reg(n)), EDIET.l(t,n)) ) * tstep) ; #CO2
 
 * Total cumulated emissions in CO2
