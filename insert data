@@ -314,7 +314,7 @@ $elseif.ph %phase%=='eql'
     eq_eind             # Industrial emissions equation'
     eq_ediet            # Diet emissions equation'
     eq_ccaeind          # Cumulative industrial carbon emissions equation'
-    eq_ccaeind          # Cumulative diet carbon emissions equation'
+    eq_ccaediet          # Cumulative diet carbon emissions equation'
     eq_ccaetot
     eq_cco2eind         # Cumulative CO2 emissions equation (from now on)'
     eq_cco2etot
