@@ -119,8 +119,8 @@ PARAMETERS
     sigma(t,n)                  'Decline rate of decarbonization (per period)'
     sig0(n)                     'Carbon intensity at starting time [kgCO2 per output 2005 USD]'
     veg0(n)                   'Initial number of vegans(%)'                      
-    emibmk(n)                 'Emissions pro_capite by a benchmark'    [GtCO2 per year per person]           
-    emiveg(n)                 'Emissions pro_capite by a vegetarian'    [GtCO2 per year per person]          
+    emibmk(n)                 'Emissions pro_capite by a benchmark'    [GtCO2 per year per milion people]           
+    emiveg(n)                 'Emissions pro_capite by a vegetarian'    [GtCO2 per year per milion people]          
 
 $gdxin '%datapath%data_baseline_emissions_calibrated.gdx'
 $load   ssp_emi_bau=emi_bau_calibrated
@@ -144,33 +144,33 @@ veg0('ssa') = 0.07;
 veg0('te') = 0.02;
 veg0('usa') = 0.042;
 
-emibmk('cajaz') = 537*(1e-12);
-emibmk('china') = 914*(1e-12);
-emibmk('easia') = 914*(1e-12);
-emibmk('kosau') = 974*(1e-12);
-emibmk('laca') = 914*(1e-12);
-emibmk('india') = 1121*(1e-12);
-emibmk('mena') = 914*(1e-12);
-emibmk('neweuro') = 974*(1e-12);
-emibmk('oldeuro') = 537*(1e-12);
-emibmk('sasia') = 1121*(1e-12);
-emibmk('ssa') = 1121*(1e-12);
-emibmk('te') = 914*(1e-12);
-emibmk('usa') = 537*(1e-12);
+emibmk('cajaz') = 537*(1e-6);
+emibmk('china') = 914*(1e-6);
+emibmk('easia') = 914*(1e-6);
+emibmk('kosau') = 974*(1e-6);
+emibmk('laca') = 914*(1e-6);
+emibmk('india') = 1121*(1e-6);
+emibmk('mena') = 914*(1e-6);
+emibmk('neweuro') = 974*(1e-6);
+emibmk('oldeuro') = 537*(1e-6);
+emibmk('sasia') = 1121*(1e-6);
+emibmk('ssa') = 1121*(1e-6);
+emibmk('te') = 914*(1e-6);
+emibmk('usa') = 537*(1e-6);
 
-emiveg('cajaz') = 275*(1e-12);
-emiveg('china') = 384*(1e-12);
-emiveg('easia') = 384*(1e-12);
-emiveg('kosau') = 384*(1e-12);
-emiveg('laca') = 384*(1e-12);
-emiveg('india') = 519*(1e-12);
-emiveg('mena') = 384*(1e-12);
-emiveg('neweuro') = 384*(1e-12);
-emiveg('oldeuro') = 275*(1e-12);
-emiveg('sasia') = 519*(1e-12);
-emiveg('ssa') = 519*(1e-12);
-emiveg('te') = 384*(1e-12);
-emiveg('usa') = 275*(1e-12);
+emiveg('cajaz') = 275*(1e-6);
+emiveg('china') = 384*(1e-6);
+emiveg('easia') = 384*(1e-6);
+emiveg('kosau') = 384*(1e-6);
+emiveg('laca') = 384*(1e-6);
+emiveg('india') = 519*(1e-6);
+emiveg('mena') = 384*(1e-6);
+emiveg('neweuro') = 384*(1e-6);
+emiveg('oldeuro') = 275*(1e-6);
+emiveg('sasia') = 519*(1e-6);
+emiveg('ssa') = 519*(1e-6);
+emiveg('te') = 384*(1e-6);
+emiveg('usa') = 275*(1e-6);
 
 
 l_curve('cajaz') =0.5;
