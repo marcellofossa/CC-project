@@ -88,7 +88,7 @@ PARAMETERS
    k_curve         /0.6/
    j_curve         /6.2/
    r_curve         /0.5/
-   l_curve
+   l_curve(n)
 
 * MIU rate controls
    miu0       'Initial emissions control rate for base calib_emissions'    / 0 / 
@@ -119,8 +119,8 @@ PARAMETERS
     sigma(t,n)                  'Decline rate of decarbonization (per period)'
     sig0(n)                     'Carbon intensity at starting time [kgCO2 per output 2005 USD]'
     veg0(n)                   'Initial number of vegans(%)'                      
-    emibmk(n)                 'Emissions pro_capite by a benchmark'    [GtCO2 per year per milion people]           
-    emiveg(n)                 'Emissions pro_capite by a vegetarian'    [GtCO2 per year per milion people]          
+    emibmk(n)                 'Emissions pro_capite by a benchmark    [GtCO2 per year per milion people]'           
+    emiveg(n)                 'Emissions pro_capite by a vegetarian    [GtCO2 per year per milion people]'         
 
 $gdxin '%datapath%data_baseline_emissions_calibrated.gdx'
 $load   ssp_emi_bau=emi_bau_calibrated
@@ -233,9 +233,8 @@ POSITIVE VARIABLES  ABATEDEMI, MIU, NVEG, EDIET ;
 # VARIABLES STARTING LEVELS 
 * to help convergence if no startboost is loaded
 
-     EIND.l(t,n) = sigma(t,n)*ykali(t,n) ;
-     NVEG.l(tfirst,n) = veg0(n);
-     EDIET.l(tfirst,n) = pop(tfirst,n)*(veg0(n)*emiveg(n)+(1-veg0(n))*emibmk(n));
+     EIND.l(t,n) = sigma(t,n)*ykali(t,n);
+     EDIET.l(t,n) = 0.05;
      E.l(t,n) = EIND.l(t,n) + EDIET.l(t,n) + eland_bau('uniform',t,n) ;
      MIU.l(t,n) = 0 ; 
      ABATEDEMI.l(t,n) = 0 ;
@@ -269,6 +268,10 @@ $elseif.ph %phase%=='compute_vars'
 ##  EMISSIONS CO2 ----------
 * Industrial emissions starting point
 EIND.fx(tfirst,n) = e0(n) ;
+* Initial vegetgarians
+NVEG.fx(tfirst,n) = veg0(n);
+* Diet emissions starting point
+EDIET.fx(tfirst,n) = pop(tfirst,n)*(veg0(n)*emiveg(n)+(1-veg0(n))*emibmk(n));
 * Resource limit for fossils emissions
 CCAEIND.up(t) = fosslim ;
 * Initial cumulated conditions
@@ -475,11 +478,17 @@ $elseif.ph %phase%=='simulate_1'
 * Industrial emissions
 EIND.l(t,n)  =  sigma(t,n) * YGROSS.l(t,n) * (1-(MIU.l(t,n))) ; #CO2
 
+* Diet emissions
+EDIET.l(t,n) =  pop(t,n)*(NVEG.l(t,n)*emiveg(n)+(1-NVEG.l(t,n))*emibmk(n)); #CO2
+
 * All emissions
-E.l(t,n)  =  EIND.l(t,n) + ELAND.l(t,n) ; #CO2
+E.l(t,n)  =  EIND.l(t,n) + EDIET.l(t,n) + ELAND.l(t,n) ; #CO2
 
 * Industrial cumulated emissions in Carbon
 CCAEIND.l(t+1)  =  CCAEIND.l(t)  + ( sum(n, EIND.l(t,n)) * tstep * CO2toC ) ; #Carbon
+
+* Diet cumulated emissions in Carbon
+CCAEDIET.l(t+1)  =  CCAEDIET.l(t)  + ( sum(n, EDIET.l(t,n)) * tstep * CO2toC ) ; #Carbon
 
 * Total cumulated emissions in Carbon
 CCAETOT.l(t+1)  =  CCAETOT.l(t)  + ( sum(n, E.l(t,n)) * tstep * CO2toC ) ; #Carbon
@@ -489,6 +498,9 @@ CUMETREE.l(t+1) =  CUMETREE.l(t) + (sum(n, ELAND.l(t,n)) * tstep * CO2toC) ; #Ca
 
 * Industrial cumulated emissions in CO2
 CCO2EIND.l(t+1)  =  CCO2EIND.l(t) + ( sum(n, EIND.l(t,n))  * tstep ) ; #CO2
+
+* Diet cumulated emissions in CO2
+CCO2EDIET.l(t+1)  =  CCO2EDIET.l(t) + ( sum(n, EDIET.l(t,n))  * tstep ) ; #CO2
 
 * Total cumulated emissions in CO2
 CCO2ETOT.l(t+1)  =  CCO2ETOT.l(t) + ( sum(n, E.l(t,n))  * tstep ) ; #CO2
@@ -549,6 +561,7 @@ EDIET
 MIU
 ABATEDEMI
 CCO2EIND
+CCO2EDIET
 CCO2ETOT
 
 # Equations (only for OPT. run_mode) -------------------
