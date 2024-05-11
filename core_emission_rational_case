@@ -557,6 +557,7 @@ emi_bau_co2
 # Variables --------------------------------------------
 E
 EIND
+NVEG
 EDIET
 MIU
 ABATEDEMI
