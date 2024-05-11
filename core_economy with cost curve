@@ -282,7 +282,7 @@ $elseif.ph %phase%=='compute_vars'
 K.fx(tfirst,n) = k0('fg', '1', n);
 
 # STARTING COST OF DIET --------
-CDIET.fx(tfirst,n) = (l_curve(n)+(r_curve/(1+exp(-k_curve*(veg0(n)*10-j_curve)))))*365*L(tfirst,n);
+CDIET.fx(tfirst,n) = (l_curve(n)+(r_curve/(1+exp(-k_curve*(veg0(n)*10-j_curve)))))*365*L(tfirst,n)*1e-6;
 
 
 # SAVINGS RATE ----------
