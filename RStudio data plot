@@ -1,0 +1,708 @@
+> library(tidyverse)
+── Attaching core tidyverse packages ─────────────────────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ───────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package to force all conflicts to become errors
+> \\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1_portable\\results\\results_default.gdx)
+Errore: '\\' inatteso in "\\"
+> mygdx <- gdx(\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1_portable\\results\\results_default.gdx)
+Errore: '\\' inatteso in "mygdx <- gdx(\\"
+> mygdx <- gdx(C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1_portable\\results\\results_default.gdx)
+Errore: '\\' inatteso in "mygdx <- gdx(C:\\"
+> mygdx <- gdx('C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATECHANGE\\NEW_RICE\\RICE50x_v1_portable\\results\\results_default.gdx')
+Errore in gdx("C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATECHANGE\\NEW_RICE\\RICE50x_v1_portable\\results\\results_default.gdx") : 
+  non trovo la funzione "gdx"
+> library(gdxtools)
+gdxtools 0.7.1
+Please specify the GAMS directory with the function "igdx"
+
+Caricamento pacchetto: ‘gdxtools’
+
+Il seguente oggetto è mascherato da ‘package:tidyr’:
+
+    extract
+
+> mygdx <- gdx('C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATECHANGE\\NEW_RICE\\RICE50x_v1_portable\\results\\results_default.gdx')
+Messaggio di avvertimento:
+In gdx("C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATECHANGE\\NEW_RICE\\RICE50x_v1_portable\\results\\results_default.gdx") :
+  C:\Users\marci\OneDrive\Desktop\POLI\CLIMATECHANGE\NEW_RICE\RICE50x_v1_portable\results\results_default.gdx does not exist!
+> igdx('C:\\GAMS\\46')
+GDX API loaded from gamsSysDir=C:\GAMS\46
+The GDX library has been loaded
+GDX library load path: C:\GAMS\46
+> mygdx <- gdx('C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATECHANGE\\NEW_RICE\\RICE50x_v1_portable\\results\\results_default.gdx')
+Messaggio di avvertimento:
+In gdx("C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATECHANGE\\NEW_RICE\\RICE50x_v1_portable\\results\\results_default.gdx") :
+  C:\Users\marci\OneDrive\Desktop\POLI\CLIMATECHANGE\NEW_RICE\RICE50x_v1_portable\results\results_default.gdx does not exist!
+> mygdx <- gdx('C:\Users\marci\OneDrive\Desktop\POLI\CLIMATE CHANGE\NEW_RICE\RICE50x_v1_portable\results/results_default.gdx')
+Errore: '\U' used without hex digits in character string (<input>:1:18)
+> mygdx <- gdx('C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1_portable\\results/results_default.gdx')
+> mygdx[eland0] |> as_tibble()
+Errore: oggetto 'eland0' non trovato
+> mygdx[fosslim] |> as_tibble()
+Errore: oggetto 'fosslim' non trovato
+> mygdx[world_e] |> as_tibble()
+Errore: oggetto 'world_e' non trovato
+> mygdx[year] |> as_tibble()
+Errore in match(x, table, nomatch = 0L) : 
+  'match' richiede argomenti vettoriali
+> mygdx[pop] |> as_tibble()
+Errore: oggetto 'pop' non trovato
+> mygdx[pback] |> as_tibble()
+Errore: oggetto 'pback' non trovato
+> mygdx$parameters$name
+ [1] "elapsed"                 "converged"               "solrep"                 
+ [4] "tstep"                   "year"                    "ykali"                  
+ [7] "ppp2mer"                 "pop"                     "basegrowthcap"          
+[10] "tfp"                     "elasmu"                  "prstp"                  
+[13] "gama"                    "dk"                      "scc"                    
+[16] "cprice_base"             "photel"                  "rr"                     
+[19] "ga"                      "gl"                      "damfrac_ykali"          
+[22] "damfrac_ygross"          "damages_ykali"           "damages_ygross"         
+[25] "world_damfrac"           "world_damages"           "fosslim"                
+[28] "max_miu"                 "t_max_miu"               "t_min_miu"              
+[31] "world_e"                 "CtoCO2"                  "CO2toC"                 
+[34] "sigma"                   "emi_bau_co2"             "nweights"               
+[37] "gamma"                   "pback"                   "gback"                  
+[40] "expcost2"                "pbacktime"               "mx"                     
+[43] "eland0"                  "deland"                  "tatm0"                  
+[46] "tocean0"                 "forcoth"                 "climate_region_coef"    
+[49] "temp_region_valid_cmip5" "deltatemp"               "rich_poor_cutoff"       
+[52] "ykalicap_median"         "ykalicap_worldavg"       "damfrac_burkesim"       
+[55] "damages_burkesim"        "ynetcap_burkesim"        "ynet_burkesim"          
+[58] "world_damfrac_burkesim"  "ynet_maximum"            "ynet_minimum"           
+[61] "ctax"                   
+> mygdx[world_damages] |> as_tibble()
+Errore: oggetto 'world_damages' non trovato
+> mygdx[pbacktime] |> as_tibble()
+Errore: oggetto 'pbacktime' non trovato
+> mygdx[tatm0] |> as_tibble()
+Errore: oggetto 'tatm0' non trovato
+> mygdx["tatm0"] |> as_tibble()
+# A tibble: 1 × 1
+  value
+  <dbl>
+1  0.85
+> mygdx["world_damages"] |> as_tibble()
+# A tibble: 116 × 3
+   gdpadj t        value
+   <chr>  <chr>    <dbl>
+ 1 PPP    1      8.16e-9
+ 2 PPP    2     -1.60e-1
+ 3 PPP    3     -1.05e+0
+ 4 PPP    4     -2.87e+0
+ 5 PPP    5     -5.87e+0
+ 6 PPP    6     -1.03e+1
+ 7 PPP    7     -1.66e+1
+ 8 PPP    8     -2.48e+1
+ 9 PPP    9     -3.54e+1
+10 PPP    10    -4.87e+1
+# ℹ 106 more rows
+# ℹ Use `print(n = ...)` to see more rows
+> mygdx["damages_ygross"] |> as_tibble()
+# A tibble: 754 × 3
+   t     n          value
+   <chr> <chr>      <dbl>
+ 1 1     cajaz   5.12e-10
+ 2 1     china   1.20e-10
+ 3 1     easia   4.81e-10
+ 4 1     india   4.60e-10
+ 5 1     kosau   7.95e-10
+ 6 1     laca    2.89e-10
+ 7 1     mena    4.79e-10
+ 8 1     neweuro 1.28e- 9
+ 9 1     oldeuro 1.94e-10
+10 1     sasia   1.92e- 9
+# ℹ 744 more rows
+# ℹ Use `print(n = ...)` to see more rows
+> print(n=4)
+Errore in print.default(n = 4) : 
+  argomento "x" assente, senza valore predefinito
+> print(n = 4)
+Errore in print.default(n = 4) : 
+  argomento "x" assente, senza valore predefinito
+> mdat_2c = mygdx 
+> pivot_longer(!Variable, names_to = "Year")
+Errore: oggetto 'Variable' non trovato
+> mdat_2c = mygdx 
+> pivot_longer(!n, names_to = "Year")
+Errore in !n : tipo argomento non valido
+> head(mygdx)
+Errore in if (item %in% x$variables$name) { : 
+  la condizione ha lunghezza > 1
+> mdat_2c <- mdat_2c |> mutate(Year = as.numeric(Year))
+Errore in UseMethod("mutate") : 
+  su un oggetto di classe "mutate" è stato usato un metodo non applicabile per "gdx"
+> mygdx["year"] |> as_tibble()
+# A tibble: 58 × 2
+   t     value
+   <chr> <dbl>
+ 1 1      2015
+ 2 2      2020
+ 3 3      2025
+ 4 4      2030
+ 5 5      2035
+ 6 6      2040
+ 7 7      2045
+ 8 8      2050
+ 9 9      2055
+10 10     2060
+# ℹ 48 more rows
+# ℹ Use `print(n = ...)` to see more rows
+> print(n = 1)
+Errore in print.default(n = 1) : 
+  argomento "x" assente, senza valore predefinito
+> print(t = 5)
+Errore in print.default(t = 5) : 
+  argomento "x" assente, senza valore predefinito
+> ggplot(data = mdat_2c |> filter(Variable == 'TATM'), # DATA
++        mapping = aes(x = Year,y = value)) +                 # MAPPING 
++     geom_line() 
+Errore in UseMethod("filter") : 
+  su un oggetto di classe "filter" è stato usato un metodo non applicabile per "gdx"
+> ggplot(data = mdat_2c |> filter(Variable == 'TATM'), 
++        mapping = aes(x = Year,y = value)) +                
++     geom_line() 
+Errore in UseMethod("filter") : 
+  su un oggetto di classe "filter" è stato usato un metodo non applicabile per "gdx"
+> a <- matrix(mygdx["year"],mygdx["TATM"])
+Errore in matrix(mygdx["year"], mygdx["TATM"]) : 
+  estensione della matrice non-numerica
+> ggplot(data = mdat_2c |> filter(Variable == 'mygdx["TATM"]'), 
++        mapping = aes(x = Year,y = value)) +                
++     geom_line() 
+Errore in UseMethod("filter") : 
+  su un oggetto di classe "filter" è stato usato un metodo non applicabile per "gdx"
+> Temperature <- veggdx["TATM"]
+Errore: oggetto 'veggdx' non trovato
+> Temperature <- mygdx["TATM"]
+> Year <- mygdx["year"]
+> ggplot(), 
+Errore: ',' inatteso in "ggplot(),"
+> ggplot(data = mygdx), 
+Errore: ',' inatteso in "ggplot(data = mygdx),"
+> ggplot(data = mygdx), 
+Errore: ',' inatteso in "ggplot(data = mygdx),"
+> ggplot(data = mygdx) 
+Error in `fortify()`:
+! `data` must be a <data.frame>, or an object coercible by `fortify()`, or a valid
+  <data.frame>-like object coercible by `as.data.frame()`.
+Caused by error in `.prevalidate_data_frame_like_object()`:
+! `dim(data)` must return an <integer> of length 2.
+Run `rlang::last_trace()` to see where the error occurred.
+> Year,TATM |> as_tibble()
+Errore: ',' inatteso in "Year,"
+> (Year,TATM) |> as_tibble()
+Errore: ',' inatteso in "(Year,"
+> mygdx["Year","TATM] |> as_tibble()
++ a <- mygdx["Year","TATM"]
+Errore: simbolo inatteso in:
+"mygdx["Year","TATM] |> as_tibble()
+a <- mygdx["Year"
+> a <- mygdx["Year","TATM"]
+Messaggio di avvertimento:
+In extract.gdx(x, ...) : item not found
+> a <- mygdx["year","TATM"]
+> a_tibble <- as_tibble(a)
+> ggplot(data = a_tibble |> filter(Variable == 'TATM'), 
++        mapping = aes(x = year,y = value)) +                 
++     geom_line() 
+Error in `filter()`:
+ℹ In argument: `Variable == "TATM"`.
+Caused by error:
+! oggetto 'Variable' non trovato
+Run `rlang::last_trace()` to see where the error occurred.
+> a_tibble
+# A tibble: 58 × 2
+   t     value
+   <chr> <dbl>
+ 1 1      2015
+ 2 2      2020
+ 3 3      2025
+ 4 4      2030
+ 5 5      2035
+ 6 6      2040
+ 7 7      2045
+ 8 8      2050
+ 9 9      2055
+10 10     2060
+# ℹ 48 more rows
+# ℹ Use `print(n = ...)` to see more rows
+> a
+    t value
+1   1  2015
+2   2  2020
+3   3  2025
+4   4  2030
+5   5  2035
+6   6  2040
+7   7  2045
+8   8  2050
+9   9  2055
+10 10  2060
+11 11  2065
+12 12  2070
+13 13  2075
+14 14  2080
+15 15  2085
+16 16  2090
+17 17  2095
+18 18  2100
+19 19  2105
+20 20  2110
+21 21  2115
+22 22  2120
+23 23  2125
+24 24  2130
+25 25  2135
+26 26  2140
+27 27  2145
+28 28  2150
+29 29  2155
+30 30  2160
+31 31  2165
+32 32  2170
+33 33  2175
+34 34  2180
+35 35  2185
+36 36  2190
+37 37  2195
+38 38  2200
+39 39  2205
+40 40  2210
+41 41  2215
+42 42  2220
+43 43  2225
+44 44  2230
+45 45  2235
+46 46  2240
+47 47  2245
+48 48  2250
+49 49  2255
+50 50  2260
+51 51  2265
+52 52  2270
+53 53  2275
+54 54  2280
+55 55  2285
+56 56  2290
+57 57  2295
+58 58  2300
+> Temperature
+    t    value
+1   1 0.850000
+2   2 1.206294
+3   3 1.406233
+4   4 1.583520
+5   5 1.708326
+6   6 1.816440
+7   7 1.915170
+8   8 2.008488
+9   9 2.099488
+10 10 2.188542
+11 11 2.275824
+12 12 2.361629
+13 13 2.446014
+14 14 2.529047
+15 15 2.610431
+16 16 2.689752
+17 17 2.767194
+18 18 2.842496
+19 19 2.915658
+20 20 2.986368
+21 21 3.054935
+22 22 3.121411
+23 23 3.185551
+24 24 3.247520
+25 25 3.307462
+26 26 3.365198
+27 27 3.420460
+28 28 3.473198
+29 29 3.523195
+30 30 3.570370
+31 31 3.614504
+32 32 3.655736
+33 33 3.694014
+34 34 3.729623
+35 35 3.762646
+36 36 3.793306
+37 37 3.821725
+38 38 3.848082
+39 39 3.872412
+40 40 3.894801
+41 41 3.915753
+42 42 3.935528
+43 43 3.953798
+44 44 3.970931
+45 45 3.986932
+46 46 4.001837
+47 47 4.015891
+48 48 4.029089
+49 49 4.041205
+50 50 4.052562
+51 51 4.063240
+52 52 4.073362
+53 53 4.082883
+54 54 4.091778
+55 55 4.100134
+56 56 4.108159
+57 57 4.116015
+58 58 4.123557
+> Temperature <- mygdx["TATM"]
+> Temperature
+    t    value
+1   1 0.850000
+2   2 1.206294
+3   3 1.406233
+4   4 1.583520
+5   5 1.708326
+6   6 1.816440
+7   7 1.915170
+8   8 2.008488
+9   9 2.099488
+10 10 2.188542
+11 11 2.275824
+12 12 2.361629
+13 13 2.446014
+14 14 2.529047
+15 15 2.610431
+16 16 2.689752
+17 17 2.767194
+18 18 2.842496
+19 19 2.915658
+20 20 2.986368
+21 21 3.054935
+22 22 3.121411
+23 23 3.185551
+24 24 3.247520
+25 25 3.307462
+26 26 3.365198
+27 27 3.420460
+28 28 3.473198
+29 29 3.523195
+30 30 3.570370
+31 31 3.614504
+32 32 3.655736
+33 33 3.694014
+34 34 3.729623
+35 35 3.762646
+36 36 3.793306
+37 37 3.821725
+38 38 3.848082
+39 39 3.872412
+40 40 3.894801
+41 41 3.915753
+42 42 3.935528
+43 43 3.953798
+44 44 3.970931
+45 45 3.986932
+46 46 4.001837
+47 47 4.015891
+48 48 4.029089
+49 49 4.041205
+50 50 4.052562
+51 51 4.063240
+52 52 4.073362
+53 53 4.082883
+54 54 4.091778
+55 55 4.100134
+56 56 4.108159
+57 57 4.116015
+58 58 4.123557
+> ggplot(data = mygdx |> filter(Variable == 'TATM'), 
++        +        mapping = aes(x = t,y = value)) +                 
+Errore: '=' inatteso in:
+"ggplot(data = mygdx |> filter(Variable == 'TATM'), 
+       +        mapping ="
+> ggplot(data = a_tibble |> filter(Variable == 'TATM'), 
++     +        mapping = aes(x = year,y = value))                  
+Errore: '=' inatteso in:
+"ggplot(data = a_tibble |> filter(Variable == 'TATM'), 
+    +        mapping ="
+> ggplot(mygdx |> filter(Variable == 'TATM'), 
++     +        mapping = aes(x = year,y = value))                  
+Errore: '=' inatteso in:
+"ggplot(mygdx |> filter(Variable == 'TATM'), 
+    +        mapping ="
+> myfiles <- file.path("C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1_portable\\results/results_default.gdx","C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1_portable\\results_ready/results_ssp1_bau")
+> res <- batch_extract("TATM",files = myfiles)
+Messaggi di avvertimento:
+1: In FUN(X[[i]], ...) :
+  C:\Users\marci\OneDrive\Desktop\POLI\CLIMATE CHANGE\NEW_RICE\RICE50x_v1_portable\results/results_default.gdx/C:\Users\marci\OneDrive\Desktop\POLI\CLIMATE CHANGE\NEW_RICE\RICE50x_v1_portable\results_ready/results_ssp1_bau does not exist!
+2: In extract.gdx(X[[i]], ...) : item not found
+> tatm <- res$TATM |> as_tibble()
+> tatm
+# A tibble: 0 × 0
+> myfiles <- file.path("C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1_portable\\results/results_default.gdx","C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1_portable\\results_ready/results_ssp1_bau.gdx")
+> res <- batch_extract("TATM",files = myfiles)
+Messaggi di avvertimento:
+1: In FUN(X[[i]], ...) :
+  C:\Users\marci\OneDrive\Desktop\POLI\CLIMATE CHANGE\NEW_RICE\RICE50x_v1_portable\results/results_default.gdx/C:\Users\marci\OneDrive\Desktop\POLI\CLIMATE CHANGE\NEW_RICE\RICE50x_v1_portable\results_ready/results_ssp1_bau.gdx does not exist!
+2: In extract.gdx(X[[i]], ...) : item not found
+> tatm <- res$TATM |> as_tibble()
+> tatm
+# A tibble: 0 × 0
+> myfiles <- file.path("C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1_portable\\results/results_default.gdx")
+> res <- batch_extract("TATM",files = myfiles)
+> tatm <- res$TATM |> as_tibble()
+> tatm
+# A tibble: 58 × 3
+   t     value gdx                                                                              
+   <chr> <dbl> <chr>                                                                            
+ 1 1      0.85 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1…
+ 2 2      1.21 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1…
+ 3 3      1.41 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1…
+ 4 4      1.58 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1…
+ 5 5      1.71 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1…
+ 6 6      1.82 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1…
+ 7 7      1.92 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1…
+ 8 8      2.01 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1…
+ 9 9      2.10 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1…
+10 10     2.19 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1…
+# ℹ 48 more rows
+# ℹ Use `print(n = ...)` to see more rows
+> tatm |> 
++ mutate(year = as.numeric(t) * 5 + 2000)  
+# A tibble: 58 × 4
+   t     value gdx                                                                          year
+   <chr> <dbl> <chr>                                                                       <dbl>
+ 1 1      0.85 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2005
+ 2 2      1.21 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2010
+ 3 3      1.41 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2015
+ 4 4      1.58 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2020
+ 5 5      1.71 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2025
+ 6 6      1.82 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2030
+ 7 7      1.92 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2035
+ 8 8      2.01 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2040
+ 9 9      2.10 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2045
+10 10     2.19 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2050
+# ℹ 48 more rows
+# ℹ Use `print(n = ...)` to see more rows
+> 
+> ggplot(tatm  filter(year <= 2100),
+Errore: simbolo inatteso in "ggplot(tatm  filter"
+> ggplot(tatm |> filter(year <= 2100),
++        aes(x = year, y = value)) +
++     geom_line() + 
++     labs(x = "", y = "°C", title = "TATM") +
++     theme_bw() +
++     scale_x_continuous(limits=c(2005, 2100)) +
++     scale_y_continuous(limits=c(0, 6))
+Error in `filter()`:
+ℹ In argument: `year <= 2100`.
+Caused by error in `year <= 2100`:
+! comparison (<=) is possible only for atomic and list types
+Run `rlang::last_trace()` to see where the error occurred.
+> rlang::last_trace()
+<error/rlang_error>
+Error in `filter()`:
+ℹ In argument: `year <= 2100`.
+Caused by error in `year <= 2100`:
+! comparison (<=) is possible only for atomic and list types
+---
+Backtrace:
+    ▆
+ 1. ├─ggplot2::ggplot(filter(tatm, year <= 2100), aes(x = year, y = value))
+ 2. ├─dplyr::filter(tatm, year <= 2100)
+ 3. └─dplyr:::filter.data.frame(tatm, year <= 2100)
+ 4.   └─dplyr:::filter_rows(.data, dots, by)
+ 5.     └─dplyr:::filter_eval(...)
+ 6.       ├─base::withCallingHandlers(...)
+ 7.       └─mask$eval_all_filter(dots, env_filter)
+ 8.         └─dplyr (local) eval()
+Run rlang::last_trace(drop = FALSE) to see 3 hidden frames.
+> ggplot(tatm,
++        aes(x = year, y = value)) +
++     geom_line() + 
++     labs(x = "", y = "°C", title = "TATM") +
++     theme_bw() +
++     scale_x_continuous(limits=c(2005, 2100)) +
++     scale_y_continuous(limits=c(0, 6))
+Error in `geom_line()`:
+! Problem while computing aesthetics.
+ℹ Error occurred in the 1st layer.
+Caused by error in `compute_aesthetics()`:
+! Aesthetics are not valid data columns.
+✖ The following aesthetics are invalid:
+✖ `x = year`
+ℹ Did you mistype the name of a data column or forget to add `after_stat()`?
+Run `rlang::last_trace()` to see where the error occurred.
+> ggplot(data = tatm,
++        aes(x = year, y = value)) +
++     geom_line() + 
++     labs(x = "", y = "°C", title = "TATM") +
++     theme_bw() +
++     scale_x_continuous(limits=c(2005, 2100)) +
++     scale_y_continuous(limits=c(0, 6))
+Error in `geom_line()`:
+! Problem while computing aesthetics.
+ℹ Error occurred in the 1st layer.
+Caused by error in `compute_aesthetics()`:
+! Aesthetics are not valid data columns.
+✖ The following aesthetics are invalid:
+✖ `x = year`
+ℹ Did you mistype the name of a data column or forget to add `after_stat()`?
+Run `rlang::last_trace()` to see where the error occurred.
+> ggplot(data = tatm,
++        aes(x = year, y = value)) +
++     geom_line() + 
++     scale_x_continuous(limits=c(2005, 2100)) +
++     scale_y_continuous(limits=c(0, 6))
+Error in `geom_line()`:
+! Problem while computing aesthetics.
+ℹ Error occurred in the 1st layer.
+Caused by error in `compute_aesthetics()`:
+! Aesthetics are not valid data columns.
+✖ The following aesthetics are invalid:
+✖ `x = year`
+ℹ Did you mistype the name of a data column or forget to add `after_stat()`?
+Run `rlang::last_trace()` to see where the error occurred.
+> rlang::last_trace()
+<error/rlang_error>
+Error in `geom_line()`:
+! Problem while computing aesthetics.
+ℹ Error occurred in the 1st layer.
+Caused by error in `compute_aesthetics()`:
+! Aesthetics are not valid data columns.
+✖ The following aesthetics are invalid:
+✖ `x = year`
+ℹ Did you mistype the name of a data column or forget to add `after_stat()`?
+---
+Backtrace:
+     ▆
+  1. ├─base (local) `<fn>`(x)
+  2. └─ggplot2:::print.ggplot(x)
+  3.   ├─ggplot2::ggplot_build(x)
+  4.   └─ggplot2:::ggplot_build.ggplot(x)
+  5.     └─ggplot2:::by_layer(...)
+  6.       ├─rlang::try_fetch(...)
+  7.       │ ├─base::tryCatch(...)
+  8.       │ │ └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+  9.       │ │   └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+ 10.       │ │     └─base (local) doTryCatch(return(expr), name, parentenv, handler)
+ 11.       │ └─base::withCallingHandlers(...)
+ 12.       └─ggplot2 (local) f(l = layers[[i]], d = data[[i]])
+ 13.         └─l$compute_aesthetics(d, plot)
+ 14.           └─ggplot2 (local) compute_aesthetics(..., self = self)
+> ggplot(data = tatm,
++        aes(x = year, y = value)) +
++     geom_line() 
+Don't know how to automatically pick scale for object of type <function>. Defaulting to
+continuous.
+Error in `geom_line()`:
+! Problem while computing aesthetics.
+ℹ Error occurred in the 1st layer.
+Caused by error in `compute_aesthetics()`:
+! Aesthetics are not valid data columns.
+✖ The following aesthetics are invalid:
+✖ `x = year`
+ℹ Did you mistype the name of a data column or forget to add `after_stat()`?
+Run `rlang::last_trace()` to see where the error occurred.
+> ggplot(data = tatm,
++        aes(x = year, y = value)) +
++     geom_line() + 
++     scale_x_continuous(limits=c(2005, 2100)) +
++     scale_y_continuous(limits=c(0, 6))
+Error in `geom_line()`:
+! Problem while computing aesthetics.
+ℹ Error occurred in the 1st layer.
+Caused by error in `compute_aesthetics()`:
+! Aesthetics are not valid data columns.
+✖ The following aesthetics are invalid:
+✖ `x = year`
+ℹ Did you mistype the name of a data column or forget to add `after_stat()`?
+Run `rlang::last_trace()` to see where the error occurred.
+> ggplot(tatm %>%
++            filter(as.numeric(year) <= 2100),
++        aes(x = year, y = value)) +
++     geom_line() +
++     labs(x = "", y = "°C", title = "TATM") +
++     theme_bw() +
++     scale_x_continuous(limits = c(2005, 2100)) +
++     scale_y_continuous(limits = c(0, 6))
+Error in `filter()`:
+ℹ In argument: `as.numeric(year) <= 2100`.
+Caused by error in `as.numeric()`:
+! cannot coerce type 'closure' to vector of type 'double'
+Run `rlang::last_trace()` to see where the error occurred.
+> class(tatm$year)
+[1] "NULL"
+Messaggio di avvertimento:
+Unknown or uninitialised column: `year`. 
+> tatm
+# A tibble: 58 × 3
+   t     value gdx                                                                              
+   <chr> <dbl> <chr>                                                                            
+ 1 1      0.85 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1…
+ 2 2      1.21 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1…
+ 3 3      1.41 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1…
+ 4 4      1.58 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1…
+ 5 5      1.71 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1…
+ 6 6      1.82 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1…
+ 7 7      1.92 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1…
+ 8 8      2.01 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1…
+ 9 9      2.10 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1…
+10 10     2.19 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE50x_v1…
+# ℹ 48 more rows
+# ℹ Use `print(n = ...)` to see more rows
+> tatm |> 
++     + mutate(year = as.numeric(t) * 5 + 2000)  
+Errore in +mutate(year = as.numeric(t) * 5 + 2000) : 
+  function '+' not supported in RHS call of a pipe (<input>:2:5)
+> tatm |>  mutate(year = as.numeric(t) * 5 + 2000)  
+# A tibble: 58 × 4
+   t     value gdx                                                                          year
+   <chr> <dbl> <chr>                                                                       <dbl>
+ 1 1      0.85 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2005
+ 2 2      1.21 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2010
+ 3 3      1.41 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2015
+ 4 4      1.58 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2020
+ 5 5      1.71 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2025
+ 6 6      1.82 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2030
+ 7 7      1.92 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2035
+ 8 8      2.01 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2040
+ 9 9      2.10 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2045
+10 10     2.19 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2050
+# ℹ 48 more rows
+# ℹ Use `print(n = ...)` to see more rows
+> tatm <- (tatm |> mutate(year = as.numeric(t) * 5 + 2000)  )
+> tatm
+# A tibble: 58 × 4
+   t     value gdx                                                                          year
+   <chr> <dbl> <chr>                                                                       <dbl>
+ 1 1      0.85 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2005
+ 2 2      1.21 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2010
+ 3 3      1.41 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2015
+ 4 4      1.58 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2020
+ 5 5      1.71 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2025
+ 6 6      1.82 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2030
+ 7 7      1.92 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2035
+ 8 8      2.01 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2040
+ 9 9      2.10 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2045
+10 10     2.19 "C:\\Users\\marci\\OneDrive\\Desktop\\POLI\\CLIMATE CHANGE\\NEW_RICE\\RICE…  2050
+# ℹ 48 more rows
+# ℹ Use `print(n = ...)` to see more rows
+> > ggplot(data = tatm,
+Errore: '>' inatteso in ">"
+>  ggplot(data = tatm,
++          +        aes(x = year, y = value)) +
++     +     geom_line() + 
++     +     labs(x = "", y = "°C", title = "TATM") +
++     +     theme_bw() +
++     +     scale_x_continuous(limits=c(2005, 2100)) +
++     +     scale_y_continuous(limits=c(0, 6))
+Errore in +aes(x = year, y = value) : 
+  argomento non valido per l'operatore unario
+> ggplot(data = tatm,
++        aes(x = year, y = value)) +
++     geom_line() +
++     labs(x = "", y = "°C", title = "TATM") +
++     theme_bw() +
++     scale_x_continuous(limits = c(2005, 2100)) +
++     scale_y_continuous(limits = c(0, 6))
