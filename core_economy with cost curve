@@ -330,8 +330,8 @@ $elseif.ph %phase%=='eql'
 #_________________________________________________________________________
 $elseif.ph %phase%=='eqs'
 * Effort curve
- eq_cost_diet(t,n)$(reg(n) and not tfirst(t))..  CDIET(t,n) =E= (l_curve(n)+(r_curve/(1+exp(-k_curve*(NVEG(t,n)*10-j_curve)))))*365*L(t,n)*1e-6;
-*eq_cost_diet(t,n)$(reg(n) and not tfirst(t))..  CDIET(t,n) =E= l_curve(n)*NVEG(t,n)*365*L(t,n)*1e-6;
+*eq_cost_diet(t,n)$(reg(n) and not tfirst(t))..  CDIET(t,n) =E= (l_curve(n)+(r_curve/(1+exp(-k_curve*(NVEG(t,n)*10-j_curve)))))*365*L(t,n)*1e-6;
+ eq_cost_diet(t,n)$(reg(n) and not tfirst(t))..  CDIET(t,n) =E= (l_curve(n)-44*NVEG(t,n))*365*L(t,n)*1e-6;
 
 * GDP gross: Cobb-Douglas production function
  eq_ygross(t,n)$(reg(n))..   YGROSS(t,n)  =E=  tfp(t,n) * (K(t,n)**gama) * (pop(t,n)/1000)**(1-gama)   ;
