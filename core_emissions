@@ -88,7 +88,7 @@ PARAMETERS
    k_curve         /0.6/
    j_curve         /6.2/
    r_curve         /0.5/
-   l_curve(n)
+   l_curve(n)   '[$/(day*person)]'
 
 * MIU rate controls
    miu0       'Initial emissions control rate for base calib_emissions'    / 0 / 
@@ -271,7 +271,8 @@ EIND.fx(tfirst,n) = e0(n) ;
 * Initial vegetgarians
 NVEG.fx(tfirst,n) = veg0(n);
 * Diet emissions starting point
-EDIET.fx(tfirst,n) = pop(tfirst,n)*(veg0(n)*emiveg(n)+(1-veg0(n))*emibmk(n));
+*EDIET.fx(tfirst,n) = pop(tfirst,n)*(veg0(n)*emiveg(n)+(1-veg0(n))*emibmk(n));
+EDIET.fx(tfirst,n) = 0;
 * Resource limit for fossils emissions
 CCAEIND.up(t) = fosslim ;
 * Initial cumulated conditions
@@ -359,7 +360,7 @@ $elseif.ph %phase%=='eqs'
  eq_eind(t,n)$(reg(n))..   EIND(t,n)  =E=  sigma(t,n) * YGROSS(t,n) * (1-(MIU(t,n)))  ;
 
 * Diet emissions
- eq_ediet(t,n)$(reg(n))..  EDIET(t,n) =E=  pop(t,n)*(NVEG(t,n)*emiveg(n)+(1-NVEG(t,n))*emibmk(n));
+ eq_ediet(t,n)$(reg(n) and not tfirst(t))..  EDIET(t,n) =E=  pop(t,n)*(NVEG(t,n)*emiveg(n)+(1-NVEG(t,n))*emibmk(n));
 
 * All emissions
  eq_e(t,n)$(reg(n))..   E(t,n)  =E=  EIND(t,n) + EDIET(t,n) + ELAND(t,n)  ;
@@ -563,6 +564,7 @@ ABATEDEMI
 CCO2EIND
 CCO2EDIET
 CCO2ETOT
+NVEG
 
 # Equations (only for OPT. run_mode) -------------------
 $if %run_mode%=='optimization' eq_e
