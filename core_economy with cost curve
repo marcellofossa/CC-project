@@ -255,6 +255,7 @@ POSITIVE VARIABLES  Y, YNET, YGROSS, C, Cpc, K, I, S;
       C.l(t,n) = ykali(t,n) - I.l(t,n)  ;
       CPC.l(t,n) = 1000 * C.l(t,n) / pop(t,n)  ;
       K.l(t,n) = k_tfp(t,n) ;
+      CDIET.l(t,n) = (l_curve(n)+(r_curve/(1+exp(-k_curve*(veg0(n)*10-j_curve)))))*365*L(t,n)*1e-6;
 
 
 ##  COMPUTE VARIABLES
@@ -269,6 +270,8 @@ $elseif.ph %phase%=='compute_vars'
        K.lo(t,n) = 1e-8; # needed because of eq_komega (!! higher than 1e-7 -> infes risk)
        S.lo(t,n) = 0.1;
        S.up(t,n) = 0.9;
+   CDIET.lo(t,n) = -1e-3;
+   CDIET.up(t,n) = 1e-3;
 #.................................................
 # NOTE
 # Hardest experiments tested:
@@ -282,7 +285,8 @@ $elseif.ph %phase%=='compute_vars'
 K.fx(tfirst,n) = k0('fg', '1', n);
 
 # STARTING COST OF DIET --------
-CDIET.fx(tfirst,n) = (l_curve(n)+(r_curve/(1+exp(-k_curve*(veg0(n)*10-j_curve)))))*365*L(tfirst,n)*1e-6;
+*CDIET.fx(tfirst,n) = (l_curve(n)+(r_curve/(1+exp(-k_curve*(veg0(n)*10-j_curve)))))*365*L(tfirst,n);
+CDIET.fx(tfirst,n) = 0;
 
 
 # SAVINGS RATE ----------
@@ -326,7 +330,8 @@ $elseif.ph %phase%=='eql'
 #_________________________________________________________________________
 $elseif.ph %phase%=='eqs'
 * Effort curve
- eq_cost_diet(t,n)$(reg(n))..  CDIET(t,n) =E= (l_curve(n)+(r_curve/(1+exp(-k_curve*(NVEG(t,n)*10-j_curve)))))*365*L(t,n)*1e-6;
+ eq_cost_diet(t,n)$(reg(n) and not tfirst(t))..  CDIET(t,n) =E= (l_curve(n)+(r_curve/(1+exp(-k_curve*(NVEG(t,n)*10-j_curve)))))*365*L(t,n)*1e-6;
+*eq_cost_diet(t,n)$(reg(n) and not tfirst(t))..  CDIET(t,n) =E= l_curve(n)*NVEG(t,n)*365*L(t,n)*1e-6;
 
 * GDP gross: Cobb-Douglas production function
  eq_ygross(t,n)$(reg(n))..   YGROSS(t,n)  =E=  tfp(t,n) * (K(t,n)**gama) * (pop(t,n)/1000)**(1-gama)   ;
@@ -518,6 +523,7 @@ YGROSS
 YNET
 Y
 CTX
+CDIET
 
 # Equations (only for OPT. run_mode) -------------------
 $if %run_mode%=='optimization' eq_cc
