@@ -9,7 +9,7 @@ TABLE_NAME |> mutate(year = as.numeric(t) * 5 + 2000)
 #in numero con la funzione as.numeric()
 
 ggplot(data = TABLE_NAME,
-     aes(x = year, y = value)) +
+     aes(x = year, y = value, color = ...)) +
      geom_line() + 
      labs(x = "...", y = "...", title = "...") +     #inserisci i titoli di assi e grafico
      theme_bw() +
