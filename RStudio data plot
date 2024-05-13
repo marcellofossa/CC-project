@@ -12,7 +12,7 @@ TABLE_NAME |> mutate(year = as.numeric(t) * 5 + 2000)
 
 ggplot(data = TABLE_NAME,
      aes(x = year, y = value, color = ...)) +
-     geom_line() + 
+     geom_line(linewidth = 1) + 
      labs(x = "...", y = "...", title = "...") +     
      theme_bw() +
      scale_x_continuous(limits=c(2005, 2100))      
@@ -31,4 +31,16 @@ tatm <- tatm |>
  mutate(scen = basename(gdx)) |>            
  mutate(scen = str_replace(scen, ".gdx", "")) |>
  mutate(scen = str_replace(scen, "results_ssp2_", ""))
-#"results_ssp2_" è un esempio di nome contenuto in TUTTI i file RESULTS_number_FILENAME  
+#"results_ssp2_" è un esempio di nome contenuto in TUTTI i file RESULTS_number_FILENAME
+
+#il seguente passaggio serve SOLO se devo sommare le variabili nelle regioni(ad esempio emissioni o costi o NVEG, non TATM)
+GROUPED_TABLE_NAME <- TABLE_NAME |> 
+ group_by(scen,year) |>
+ summarise(value = sum(value))
+
+ggplot(data = TABLE_NAME,
+     aes(x = year, y = value, color = ...)) +
+     geom_line(linewidth = 1) + 
+     labs(x = "...", y = "...", title = "...") +     
+     theme_bw() +
+     scale_x_continuous(limits=c(2005, 2100)) 
