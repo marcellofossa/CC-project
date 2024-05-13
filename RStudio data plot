@@ -1,3 +1,5 @@
+#per un solo file
+
 myfiles <- file.path("PATH/RESULTS_NAME.gdx")    #ricorda di mettere doppie '\\' nel PATH
 
 res <- batch_extract("VARIABLE",files = myfiles)
@@ -11,6 +13,22 @@ TABLE_NAME |> mutate(year = as.numeric(t) * 5 + 2000)
 ggplot(data = TABLE_NAME,
      aes(x = year, y = value, color = ...)) +
      geom_line() + 
-     labs(x = "...", y = "...", title = "...") +     #inserisci i titoli di assi e grafico
+     labs(x = "...", y = "...", title = "...") +     
      theme_bw() +
-     scale_x_continuous(limits=c(2005, 2100))       #si può modificare l'intervallo
+     scale_x_continuous(limits=c(2005, 2100))      
+
+
+#per più file insieme
+
+myfiles <- file.path("PATH", c("RESULTS_1_NAME","RESULTS_2_NAME",...))     #ricorda di mettere doppie '\\' nel PATH
+
+res <- batch_extract("VARIABLE",files = myfiles)
+
+TABLE_NAME <- res$VARIABLE |> as_tibble()
+
+tatm <- tatm |> 
+ mutate(year = as.numeric(t) * 5 + 2000) |>  
+ mutate(scen = basename(gdx)) |>            
+ mutate(scen = str_replace(scen, ".gdx", "")) |>
+ mutate(scen = str_replace(scen, "results_ssp2_", ""))
+#"results_ssp2_" è un esempio di nome contenuto in TUTTI i file RESULTS_number_FILENAME  
