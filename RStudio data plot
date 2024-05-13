@@ -13,4 +13,4 @@ ggplot(data = TABLE_NAME,
      geom_line() + 
      labs(x = "...", y = "...", title = "...") +     #inserisci i titoli di assi e grafico
      theme_bw() +
-     scale_x_continuous(limits=c(2005, 2100)) +      #si può modificare l'intervallo
+     scale_x_continuous(limits=c(2005, 2100))       #si può modificare l'intervallo
