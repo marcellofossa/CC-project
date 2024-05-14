@@ -6,7 +6,7 @@ res <- batch_extract("VARIABLE",files = myfiles)
 
 TABLE_NAME <- res$VARIABLE |> as_tibble()        #esempio di table name: 'variable'(nome variabile in minuscolo)
 
-TABLE_NAME |> mutate(year = as.numeric(t) * 5 + 2000)  
+TABLE_NAME <- TABLE_NAME |> mutate(year = as.numeric(t) * 5 + 2000)  
 #t è un parametro di gams che va da 1 a 58, year va da 2005 in poi. t viene letto come carattere quindi lo trasformo 
 #in numero con la funzione as.numeric()
 
